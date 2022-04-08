@@ -1,0 +1,2218 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="Sri Lanka Standard Time">
+<General productName="Micro Focus UFT One" productVer="2021" os="Windows 10" host="vm001"><DocLocation><![CDATA[C:\Users\sfjbs\Desktop\OpenCart_Home\Driver\Module1Home]]></DocLocation></General>
+<Doc rID="T1"   productName= "Micro Focus UFT One"  >
+<DName><![CDATA[Module1Home]]></DName>
+<Res><![CDATA[Res149]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xlsx]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[Tr_Home]]></Obj>
+<Details plainTxt="False" ><![CDATA[Transaction "Tr_Home" started.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:25]]></Time>
+<TimeTick>1649400805</TimeTick>
+<NodeArgs eType="Transaction" icon="5" nRep="8" nType="Start Transaction" Source="Action1" SourceLine="0" >
+<Disp><![CDATA[Tr_Home]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:29]]></Time>
+<TimeTick>1649400809</TimeTick>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:29]]></Time>
+<TimeTick>1649400809</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="12" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="11" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:32]]></Time>
+<TimeTick>1649400812</TimeTick>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:32]]></Time>
+<TimeTick>1649400812</TimeTick>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Desktops.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:32]]></Time>
+<TimeTick>1649400812</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="16" >
+<Disp><![CDATA[Desktops.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Mac (1).Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:32]]></Time>
+<TimeTick>1649400812</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="18" >
+<Disp><![CDATA[Mac (1).Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="15" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:53]]></Time>
+<TimeTick>1649400833</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="19" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:53]]></Time>
+<TimeTick>1649400833</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="20" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:53]]></Time>
+<TimeTick>1649400833</TimeTick>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:53]]></Time>
+<TimeTick>1649400833</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="22" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>title=Your Store<br>micclass=Page<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Page<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:53]]></Time>
+<TimeTick>1649400833</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="23" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA["Desktops"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (2 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>text=Desktops<br>micclass=Link<br>html tag=A<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (76 objects found)&nbsp;</FONT></u><br>
+micclass=Link<br>html tag=A<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+text=Desktops<SPAN class=passed> (Used</SPAN>, 2 matches)</SPAN><br>html id=<SPAN class=passed> (Used</SPAN>, 2 matches)</SPAN><br>class=dropdown-toggle<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>name=Desktops<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>href=https://demo.opencart.com/index.php?route=product/category&path=20<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>visible=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:53]]></Time>
+<TimeTick>1649400833</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="25" >
+<Disp><![CDATA["Desktops"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[Desktops.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:53]]></Time>
+<TimeTick>1649400833</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="26" >
+<Disp><![CDATA[Desktops.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="21" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="14" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj ><![CDATA[NavigationBar]]></Obj>
+<Details ><![CDATA[Navigation Successful]]></Details>
+<Time><![CDATA[4/8/2022 - 12:23:53]]></Time>
+<TimeTick>1649400833</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="27" status="Passed" >
+<Disp><![CDATA[NavigationBar]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:24:14]]></Time>
+<TimeTick>1649400854</TimeTick>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:24:14]]></Time>
+<TimeTick>1649400854</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="29" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:24:14]]></Time>
+<TimeTick>1649400854</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="30" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:24:35]]></Time>
+<TimeTick>1649400875</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="31" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:24:35]]></Time>
+<TimeTick>1649400875</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="32" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:24:35]]></Time>
+<TimeTick>1649400875</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="34" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/8/2022 - 12:26:43]]></Time>
+<TimeTick>1649401003</TimeTick>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/8/2022 - 12:26:43]]></Time>
+<TimeTick>1649401003</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="38" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="37" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[[ Link ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:26:46]]></Time>
+<TimeTick>1649401006</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="40" >
+<Disp><![CDATA[[ Link ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[[ Link ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:26:47]]></Time>
+<TimeTick>1649401007</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="41" >
+<Disp><![CDATA[[ Link ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="28" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj ><![CDATA[StoreLogo]]></Obj>
+<Details ><![CDATA[StoreLogo  Available]]></Details>
+<Time><![CDATA[4/8/2022 - 12:26:47]]></Time>
+<TimeTick>1649401007</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="42" status="Passed" >
+<Disp><![CDATA[StoreLogo]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:26:47]]></Time>
+<TimeTick>1649401007</TimeTick>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:26:47]]></Time>
+<TimeTick>1649401007</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="45" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:29]]></Time>
+<TimeTick>1649401049</TimeTick>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:29]]></Time>
+<TimeTick>1649401049</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="49" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="48" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:32]]></Time>
+<TimeTick>1649401052</TimeTick>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[$ Currency.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:32]]></Time>
+<TimeTick>1649401052</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="52" >
+<Disp><![CDATA[$ Currency.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[$ US Dollar.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:37]]></Time>
+<TimeTick>1649401057</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="54" >
+<Disp><![CDATA[$ US Dollar.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[$ Currency.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:38]]></Time>
+<TimeTick>1649401058</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="55" >
+<Disp><![CDATA[$ Currency.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="51" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="44" status="Passed" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T39">
+<Obj ><![CDATA[CurrencyBlock]]></Obj>
+<Details ><![CDATA[CurrencyBlock Available]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:38]]></Time>
+<TimeTick>1649401058</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="56" status="Passed" >
+<Disp><![CDATA[CurrencyBlock]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:38]]></Time>
+<TimeTick>1649401058</TimeTick>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:38]]></Time>
+<TimeTick>1649401058</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="59" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:43]]></Time>
+<TimeTick>1649401063</TimeTick>
+<Step rID="T43">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:43]]></Time>
+<TimeTick>1649401063</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="63" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="62" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:46]]></Time>
+<TimeTick>1649401066</TimeTick>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA[Shopping Cart.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:46]]></Time>
+<TimeTick>1649401066</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="66" >
+<Disp><![CDATA[Shopping Cart.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="65" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:47]]></Time>
+<TimeTick>1649401067</TimeTick>
+<Step rID="T47">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:47]]></Time>
+<TimeTick>1649401067</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="68" >
+<Disp><![CDATA[Phones & PDAs.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="67" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="58" status="Passed" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj ><![CDATA[ShoppingCart]]></Obj>
+<Details ><![CDATA[Navigation Successful]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:47]]></Time>
+<TimeTick>1649401067</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="69" status="Passed" >
+<Disp><![CDATA[ShoppingCart]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:47]]></Time>
+<TimeTick>1649401067</TimeTick>
+<Step rID="T50">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:47]]></Time>
+<TimeTick>1649401067</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="72" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:52]]></Time>
+<TimeTick>1649401072</TimeTick>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:52]]></Time>
+<TimeTick>1649401072</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="76" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="75" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:55]]></Time>
+<TimeTick>1649401075</TimeTick>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA[Laptops & Notebooks.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:55]]></Time>
+<TimeTick>1649401075</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="79" >
+<Disp><![CDATA[Laptops & Notebooks.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA[Show All Laptops & Notebooks.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:27:55]]></Time>
+<TimeTick>1649401075</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="81" >
+<Disp><![CDATA[Show All Laptops & Notebooks.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="78" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T56">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:28:17]]></Time>
+<TimeTick>1649401097</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="82" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T57">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:28:17]]></Time>
+<TimeTick>1649401097</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="83" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T58">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:28:17]]></Time>
+<TimeTick>1649401097</TimeTick>
+<Step rID="T59">
+<Obj plainTxt="False" ><![CDATA[Add to Cart.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:28:17]]></Time>
+<TimeTick>1649401097</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="86" >
+<Disp><![CDATA[Add to Cart.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="85" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T60">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:28:38]]></Time>
+<TimeTick>1649401118</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="87" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T61">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:28:38]]></Time>
+<TimeTick>1649401118</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="88" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T62">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:28:59]]></Time>
+<TimeTick>1649401139</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="89" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T63">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:28:59]]></Time>
+<TimeTick>1649401139</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="90" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T64">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:28:59]]></Time>
+<TimeTick>1649401139</TimeTick>
+<Step rID="T65">
+<Obj plainTxt="False" ><![CDATA[Add to Cart_2.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["abs_x", True, 1262, 5000]]></Details>
+<Time><![CDATA[4/8/2022 - 12:28:59]]></Time>
+<TimeTick>1649401139</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="94" >
+<Disp><![CDATA[Add to Cart_2.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="93" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T66">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:29:20]]></Time>
+<TimeTick>1649401160</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="95" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T67">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:29:20]]></Time>
+<TimeTick>1649401160</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="96" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T68">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:29:41]]></Time>
+<TimeTick>1649401181</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="98" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T69">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:29:41]]></Time>
+<TimeTick>1649401181</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="99" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T70">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:29:41]]></Time>
+<TimeTick>1649401181</TimeTick>
+<Step rID="T71">
+<Obj plainTxt="False" ><![CDATA[Add to Cart_2.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:29:41]]></Time>
+<TimeTick>1649401181</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="102" >
+<Disp><![CDATA[Add to Cart_2.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="101" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T72">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:02]]></Time>
+<TimeTick>1649401202</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="103" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T73">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:02]]></Time>
+<TimeTick>1649401202</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="104" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T74">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:02]]></Time>
+<TimeTick>1649401202</TimeTick>
+<Step rID="T75">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:02]]></Time>
+<TimeTick>1649401202</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="106" >
+<Disp><![CDATA[Phones & PDAs.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="105" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="71" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T76">
+<Obj ><![CDATA[AddToCart]]></Obj>
+<Details ><![CDATA[Navigation Successful]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:02]]></Time>
+<TimeTick>1649401202</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="107" status="Passed" >
+<Disp><![CDATA[AddToCart]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T77">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:22]]></Time>
+<TimeTick>1649401222</TimeTick>
+<Step rID="T78">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:22]]></Time>
+<TimeTick>1649401222</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="109" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T79">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:22]]></Time>
+<TimeTick>1649401222</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="110" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T80">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:22]]></Time>
+<TimeTick>1649401222</TimeTick>
+<Step rID="T81">
+<Obj plainTxt="False" ><![CDATA[WebElement]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebElement]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:22]]></Time>
+<TimeTick>1649401222</TimeTick>
+<HtmlStep rID="T82">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "WebElement": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 4/8/2022 - 12:30:22</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">WebElement Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">I&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649401222</TimeTick>
+<NodeArgs eType="Verification" icon="13" nRep="114" status="Passed" >
+<Disp><![CDATA[Checkpoint "WebElement"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="13" nRep="113" status="Passed" >
+<Disp><![CDATA[WebElement]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="112" status="Passed" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T83">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:43]]></Time>
+<TimeTick>1649401243</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="115" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T84">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:43]]></Time>
+<TimeTick>1649401243</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="116" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T85">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:44]]></Time>
+<TimeTick>1649401244</TimeTick>
+<Step rID="T86">
+<Obj plainTxt="False" ><![CDATA[1 item(s) - $122.00.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:30:44]]></Time>
+<TimeTick>1649401244</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="119" >
+<Disp><![CDATA[1 item(s) - $122.00.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="118" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T87">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:05]]></Time>
+<TimeTick>1649401265</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="120" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T88">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:05]]></Time>
+<TimeTick>1649401265</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="121" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T89">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:05]]></Time>
+<TimeTick>1649401265</TimeTick>
+<Step rID="T90">
+<Obj plainTxt="False" ><![CDATA[1 item(s) - $122.00.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:05]]></Time>
+<TimeTick>1649401265</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="123" >
+<Disp><![CDATA[1 item(s) - $122.00.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="122" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T91">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:26]]></Time>
+<TimeTick>1649401286</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="124" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T92">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:26]]></Time>
+<TimeTick>1649401286</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="125" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T93">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:47]]></Time>
+<TimeTick>1649401307</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="127" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T94">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:47]]></Time>
+<TimeTick>1649401307</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="128" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T95">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:47]]></Time>
+<TimeTick>1649401307</TimeTick>
+<Step rID="T96">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:47]]></Time>
+<TimeTick>1649401307</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="130" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T97">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>title=Your Store<br>micclass=Page<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Page<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:47]]></Time>
+<TimeTick>1649401307</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="131" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T98">
+<Obj plainTxt="False" ><![CDATA[View Cart.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:31:47]]></Time>
+<TimeTick>1649401307</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="133" >
+<Disp><![CDATA[View Cart.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="129" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T99">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:07]]></Time>
+<TimeTick>1649401327</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="134" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T100">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:07]]></Time>
+<TimeTick>1649401327</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="135" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T101">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:28]]></Time>
+<TimeTick>1649401348</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="136" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T102">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:28]]></Time>
+<TimeTick>1649401348</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="137" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T103">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:28]]></Time>
+<TimeTick>1649401348</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="139" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T104">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:33]]></Time>
+<TimeTick>1649401353</TimeTick>
+<Step rID="T105">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:33]]></Time>
+<TimeTick>1649401353</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="143" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="142" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T106">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:37]]></Time>
+<TimeTick>1649401357</TimeTick>
+<Step rID="T107">
+<Obj plainTxt="False" ><![CDATA[search_2.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Laptop"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:37]]></Time>
+<TimeTick>1649401357</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="146" >
+<Disp><![CDATA[search_2.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T108">
+<Obj plainTxt="False" ><![CDATA[WebButton.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:37]]></Time>
+<TimeTick>1649401357</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="148" >
+<Disp><![CDATA[WebButton.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="145" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T109">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:58]]></Time>
+<TimeTick>1649401378</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="149" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T110">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:58]]></Time>
+<TimeTick>1649401378</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="150" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T111">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:58]]></Time>
+<TimeTick>1649401378</TimeTick>
+<Step rID="T112">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:58]]></Time>
+<TimeTick>1649401378</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="152" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T113">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>title=Your Store<br>micclass=Page<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Page<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:58]]></Time>
+<TimeTick>1649401378</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="153" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T114">
+<Obj plainTxt="False" ><![CDATA[WebButton.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:58]]></Time>
+<TimeTick>1649401378</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="155" >
+<Disp><![CDATA[WebButton.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="151" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="108" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T115">
+<Obj ><![CDATA[SearchBox]]></Obj>
+<Details ><![CDATA[SearchBox  Available]]></Details>
+<Time><![CDATA[4/8/2022 - 12:32:58]]></Time>
+<TimeTick>1649401378</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="156" status="Passed" >
+<Disp><![CDATA[SearchBox]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T116">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:23]]></Time>
+<TimeTick>1649401403</TimeTick>
+<Step rID="T117">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:23]]></Time>
+<TimeTick>1649401403</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="158" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T118">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:23]]></Time>
+<TimeTick>1649401403</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="159" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T119">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:43]]></Time>
+<TimeTick>1649401423</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="161" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T120">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:43]]></Time>
+<TimeTick>1649401423</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="162" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T121">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:43]]></Time>
+<TimeTick>1649401423</TimeTick>
+<Step rID="T122">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:43]]></Time>
+<TimeTick>1649401423</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="164" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T123">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>title=Your Store<br>micclass=Page<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Page<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:43]]></Time>
+<TimeTick>1649401423</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="165" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T124">
+<Obj plainTxt="False" ><![CDATA["search_2"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:44]]></Time>
+<TimeTick>1649401424</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="167" status="Warning" >
+<Disp><![CDATA["search_2"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T125">
+<Obj plainTxt="False" ><![CDATA["search_2"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>value=<br>type=text<br>placeholder=Search<br>outerhtml=&ltinput type="text" name="search" value="" placeholder="Search" class="form-control input-lg"&gt<br>name=search<br>micclass=WebEdit<br>html tag=INPUT<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (2 objects found)&nbsp;</FONT></u><br>
+type=text<br>micclass=WebEdit<br>html tag=INPUT<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=search<SPAN class=passed> (Used</SPAN>, 2 matches)</SPAN><br>html id=<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>max length=524288<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>default value=Phones<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>class=form-control input-lg<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>rows=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>placeholder=Search<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:44]]></Time>
+<TimeTick>1649401424</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="168" >
+<Disp><![CDATA["search_2"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T126">
+<Obj plainTxt="False" ><![CDATA[search_2.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Mac"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:33:44]]></Time>
+<TimeTick>1649401424</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="169" >
+<Disp><![CDATA[search_2.Set]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="163" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T127">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:34:04]]></Time>
+<TimeTick>1649401444</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="170" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T128">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:34:04]]></Time>
+<TimeTick>1649401444</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="171" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T129">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:34:25]]></Time>
+<TimeTick>1649401465</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="173" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T130">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:34:25]]></Time>
+<TimeTick>1649401465</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="174" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T131">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:34:25]]></Time>
+<TimeTick>1649401465</TimeTick>
+<Step rID="T132">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:34:25]]></Time>
+<TimeTick>1649401465</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="176" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T133">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>title=Your Store<br>micclass=Page<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Page<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:34:25]]></Time>
+<TimeTick>1649401465</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="177" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T134">
+<Obj plainTxt="False" ><![CDATA[WebButton.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:34:25]]></Time>
+<TimeTick>1649401465</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="179" >
+<Disp><![CDATA[WebButton.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="175" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T135">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:34:46]]></Time>
+<TimeTick>1649401486</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="180" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T136">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:34:46]]></Time>
+<TimeTick>1649401486</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="181" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T137">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:06]]></Time>
+<TimeTick>1649401506</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="182" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T138">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:06]]></Time>
+<TimeTick>1649401506</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="183" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T139">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:06]]></Time>
+<TimeTick>1649401506</TimeTick>
+<Step rID="T140">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:06]]></Time>
+<TimeTick>1649401506</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="185" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T141">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>title=Your Store<br>micclass=Page<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Page<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:06]]></Time>
+<TimeTick>1649401506</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="186" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T142">
+<Obj plainTxt="False" ><![CDATA[WebButton.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:06]]></Time>
+<TimeTick>1649401506</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="188" >
+<Disp><![CDATA[WebButton.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="184" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="157" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T143">
+<Obj ><![CDATA[SearchBox]]></Obj>
+<Details ><![CDATA[SearchBox  Available]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:06]]></Time>
+<TimeTick>1649401506</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="189" status="Passed" >
+<Disp><![CDATA[SearchBox]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T144">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:30]]></Time>
+<TimeTick>1649401530</TimeTick>
+<Step rID="T145">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:30]]></Time>
+<TimeTick>1649401530</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="191" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T146">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:30]]></Time>
+<TimeTick>1649401530</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="192" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T147">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:51]]></Time>
+<TimeTick>1649401551</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="194" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T148">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:51]]></Time>
+<TimeTick>1649401551</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="195" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T149">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:51]]></Time>
+<TimeTick>1649401551</TimeTick>
+<Step rID="T150">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:51]]></Time>
+<TimeTick>1649401551</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="197" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T151">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>title=Your Store<br>micclass=Page<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Page<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:51]]></Time>
+<TimeTick>1649401551</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="198" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T152">
+<Obj plainTxt="False" ><![CDATA["search_2"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:51]]></Time>
+<TimeTick>1649401551</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="200" status="Warning" >
+<Disp><![CDATA["search_2"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T153">
+<Obj plainTxt="False" ><![CDATA["search_2"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>value=<br>type=text<br>placeholder=Search<br>outerhtml=&ltinput type="text" name="search" value="" placeholder="Search" class="form-control input-lg"&gt<br>name=search<br>micclass=WebEdit<br>html tag=INPUT<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (2 objects found)&nbsp;</FONT></u><br>
+type=text<br>micclass=WebEdit<br>html tag=INPUT<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=search<SPAN class=passed> (Used</SPAN>, 2 matches)</SPAN><br>html id=<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>max length=524288<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>default value=Phones<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>class=form-control input-lg<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>rows=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>placeholder=Search<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:51]]></Time>
+<TimeTick>1649401551</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="201" >
+<Disp><![CDATA["search_2"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T154">
+<Obj plainTxt="False" ><![CDATA[search_2.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Apple"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:35:51]]></Time>
+<TimeTick>1649401551</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="202" >
+<Disp><![CDATA[search_2.Set]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="196" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T155">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:36:12]]></Time>
+<TimeTick>1649401572</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="203" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T156">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:36:12]]></Time>
+<TimeTick>1649401572</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="204" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T157">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:36:33]]></Time>
+<TimeTick>1649401593</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="206" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T158">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:36:33]]></Time>
+<TimeTick>1649401593</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="207" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T159">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:36:33]]></Time>
+<TimeTick>1649401593</TimeTick>
+<Step rID="T160">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:36:33]]></Time>
+<TimeTick>1649401593</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="209" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T161">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>title=Your Store<br>micclass=Page<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Page<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:36:33]]></Time>
+<TimeTick>1649401593</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="210" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T162">
+<Obj plainTxt="False" ><![CDATA[WebButton.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:36:33]]></Time>
+<TimeTick>1649401593</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="212" >
+<Disp><![CDATA[WebButton.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="208" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T163">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:36:54]]></Time>
+<TimeTick>1649401614</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="213" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T164">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:36:54]]></Time>
+<TimeTick>1649401614</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="214" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T165">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:14]]></Time>
+<TimeTick>1649401634</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="215" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T166">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:14]]></Time>
+<TimeTick>1649401634</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="216" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T167">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:14]]></Time>
+<TimeTick>1649401634</TimeTick>
+<Step rID="T168">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:14]]></Time>
+<TimeTick>1649401634</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="218" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T169">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>title=Your Store<br>micclass=Page<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Page<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:14]]></Time>
+<TimeTick>1649401634</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="219" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T170">
+<Obj plainTxt="False" ><![CDATA[WebButton.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:14]]></Time>
+<TimeTick>1649401634</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="221" >
+<Disp><![CDATA[WebButton.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="217" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="190" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T171">
+<Obj ><![CDATA[SearchBox]]></Obj>
+<Details ><![CDATA[SearchBox  Available]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:14]]></Time>
+<TimeTick>1649401634</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="222" status="Passed" >
+<Disp><![CDATA[SearchBox]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T172">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:34]]></Time>
+<TimeTick>1649401654</TimeTick>
+<Step rID="T173">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:34]]></Time>
+<TimeTick>1649401654</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="224" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T174">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:34]]></Time>
+<TimeTick>1649401654</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="225" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T175">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:55]]></Time>
+<TimeTick>1649401675</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="226" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T176">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:55]]></Time>
+<TimeTick>1649401675</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="227" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T177">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:37:55]]></Time>
+<TimeTick>1649401675</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="229" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T178">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:00]]></Time>
+<TimeTick>1649401680</TimeTick>
+<Step rID="T179">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:00]]></Time>
+<TimeTick>1649401680</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="233" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="232" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T180">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:05]]></Time>
+<TimeTick>1649401685</TimeTick>
+<Step rID="T181">
+<Obj plainTxt="False" ><![CDATA[Wish List (0).Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:05]]></Time>
+<TimeTick>1649401685</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="236" >
+<Disp><![CDATA[Wish List (0).Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="235" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T182">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:26]]></Time>
+<TimeTick>1649401706</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="237" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T183">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:26]]></Time>
+<TimeTick>1649401706</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="238" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T184">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:26]]></Time>
+<TimeTick>1649401706</TimeTick>
+<Step rID="T185">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:26]]></Time>
+<TimeTick>1649401706</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="240" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T186">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>title=Your Store<br>micclass=Page<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Page<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:26]]></Time>
+<TimeTick>1649401706</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="241" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T187">
+<Obj plainTxt="False" ><![CDATA[Your Store.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:26]]></Time>
+<TimeTick>1649401706</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="243" >
+<Disp><![CDATA[Your Store.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="239" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="223" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T188">
+<Obj ><![CDATA[WishlistDisplay]]></Obj>
+<Details ><![CDATA[WishlistDisplay Available]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:26]]></Time>
+<TimeTick>1649401706</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="244" status="Passed" >
+<Disp><![CDATA[WishlistDisplay]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T189">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:46]]></Time>
+<TimeTick>1649401726</TimeTick>
+<Step rID="T190">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:46]]></Time>
+<TimeTick>1649401726</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="246" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T191">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:38:46]]></Time>
+<TimeTick>1649401726</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="247" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T192">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/8/2022 - 12:39:07]]></Time>
+<TimeTick>1649401747</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="248" status="Warning" >
+<Disp><![CDATA["Your Store"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T193">
+<Obj plainTxt="False" ><![CDATA["Your Store"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=Your Store<br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br>]]></Details>
+<Time><![CDATA[4/8/2022 - 12:39:07]]></Time>
+<TimeTick>1649401747</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="249" >
+<Disp><![CDATA["Your Store"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T194">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 12:39:07]]></Time>
+<TimeTick>1649401747</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="251" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T195">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/8/2022 - 13:05:42]]></Time>
+<TimeTick>1649403342</TimeTick>
+<Step rID="T196">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/8/2022 - 13:05:42]]></Time>
+<TimeTick>1649403342</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="255" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="254" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T197">
+<Obj plainTxt="False" ><![CDATA[[ My Account  ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 13:05:47]]></Time>
+<TimeTick>1649403347</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="258" >
+<Disp><![CDATA[[ My Account  ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T198">
+<Obj plainTxt="False" ><![CDATA[[ My Account  ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 13:05:49]]></Time>
+<TimeTick>1649403349</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="260" >
+<Disp><![CDATA[[ My Account  ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="245" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T199">
+<Obj ><![CDATA[MyAccount]]></Obj>
+<Details ><![CDATA[MyAccount  Available]]></Details>
+<Time><![CDATA[4/8/2022 - 13:05:49]]></Time>
+<TimeTick>1649403349</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="261" status="Passed" >
+<Disp><![CDATA[MyAccount]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T200">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 13:05:49]]></Time>
+<TimeTick>1649403349</TimeTick>
+<Step rID="T201">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 13:05:49]]></Time>
+<TimeTick>1649403349</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="264" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T202">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/8/2022 - 13:05:54]]></Time>
+<TimeTick>1649403354</TimeTick>
+<Step rID="T203">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/8/2022 - 13:05:54]]></Time>
+<TimeTick>1649403354</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="268" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="267" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T204">
+<Obj plainTxt="False" ><![CDATA[[ My Account  ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:02]]></Time>
+<TimeTick>1649403362</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="271" >
+<Disp><![CDATA[[ My Account  ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T205">
+<Obj plainTxt="False" ><![CDATA[[ My Account  ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:05]]></Time>
+<TimeTick>1649403365</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="273" >
+<Disp><![CDATA[[ My Account  ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="263" status="Passed" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T206">
+<Obj ><![CDATA[MyAccount]]></Obj>
+<Details ><![CDATA[MyAccount  Available]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:05]]></Time>
+<TimeTick>1649403365</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="274" status="Passed" >
+<Disp><![CDATA[MyAccount]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T207">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:05]]></Time>
+<TimeTick>1649403365</TimeTick>
+<Step rID="T208">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:05]]></Time>
+<TimeTick>1649403365</TimeTick>
+<Step rID="T209">
+<Obj plainTxt="False" ><![CDATA[Register.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:05]]></Time>
+<TimeTick>1649403365</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="278" Source="Action1" SourceLine="90" >
+<Disp><![CDATA[Register.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="277" Source="Action1" SourceLine="90" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T210">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:06]]></Time>
+<TimeTick>1649403366</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="280" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T211">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:10]]></Time>
+<TimeTick>1649403370</TimeTick>
+<Step rID="T212">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:10]]></Time>
+<TimeTick>1649403370</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="284" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="283" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T213">
+<Obj plainTxt="False" ><![CDATA[[ My Account  ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:16]]></Time>
+<TimeTick>1649403376</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="287" >
+<Disp><![CDATA[[ My Account  ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T214">
+<Obj plainTxt="False" ><![CDATA[[ My Account  ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:18]]></Time>
+<TimeTick>1649403378</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="289" >
+<Disp><![CDATA[[ My Account  ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="276" status="Passed" Source="Action1" SourceLine="90" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T215">
+<Obj ><![CDATA[MyAccount]]></Obj>
+<Details ><![CDATA[MyAccount  Available]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:18]]></Time>
+<TimeTick>1649403378</TimeTick>
+<NodeArgs eType="User" icon="11" nRep="290" status="Passed" >
+<Disp><![CDATA[MyAccount]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T216">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:18]]></Time>
+<TimeTick>1649403378</TimeTick>
+<Step rID="T217">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:18]]></Time>
+<TimeTick>1649403378</TimeTick>
+<Step rID="T218">
+<Obj plainTxt="False" ><![CDATA[Login.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:18]]></Time>
+<TimeTick>1649403378</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="294" Source="Action1" SourceLine="98" >
+<Disp><![CDATA[Login.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="293" Source="Action1" SourceLine="98" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T219">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:19]]></Time>
+<TimeTick>1649403379</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="296" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T220">
+<Obj plainTxt="False" ><![CDATA[Tr_Home]]></Obj>
+<Details plainTxt="False" ><![CDATA[Transaction "Tr_Home" ended with "Pass" status (Total Duration: 2574.7232 sec Wasted Time: 588.9123 sec).]]></Details>
+<Time><![CDATA[4/8/2022 - 13:06:20]]></Time>
+<TimeTick>1649403380</TimeTick>
+<NodeArgs eType="Transaction" icon="15" nRep="297" nType="End Transaction" Source="Action1" SourceLine="109" >
+<Disp><![CDATA[Tr_Home]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="292" Source="Action1" SourceLine="98" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="4/8/2022 - 12:23:25" eTime="4/8/2022 - 13:06:20" passed="23" failed="0" warnings="46" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" status="Warning" >
+<Disp><![CDATA[Action1 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T221">
+<AName><![CDATA[Action2]]></AName>
+<Summary sTime="4/8/2022 - 13:06:20" eTime="4/8/2022 - 13:06:20" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="299" >
+<Disp><![CDATA[Action2 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T222">
+<AName><![CDATA[Action3]]></AName>
+<Summary sTime="4/8/2022 - 13:06:20" eTime="4/8/2022 - 13:06:20" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="301" >
+<Disp><![CDATA[Action3 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T223">
+<AName><![CDATA[Action4]]></AName>
+<Summary sTime="4/8/2022 - 13:06:21" eTime="4/8/2022 - 13:06:21" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="303" >
+<Disp><![CDATA[Action4 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Warning" >
+<Disp><![CDATA[Module1Home Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="4/8/2022 - 12:23:22" eTime="4/8/2022 - 13:06:21" passed="23" failed="0" warnings="46" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Warning" >
+<Disp><![CDATA[Test Module1Home Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

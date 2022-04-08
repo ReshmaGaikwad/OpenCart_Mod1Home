@@ -1,0 +1,6 @@
+<Environment>
+	<Variable>
+		<Name>Home_Env</Name>
+		<Value><![CDATA[https://demo.opencart.com/]]></Value>
+	</Variable>
+</Environment>

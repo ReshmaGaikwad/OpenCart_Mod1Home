@@ -1,0 +1,783 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="Sri Lanka Standard Time">
+<General productName="Micro Focus UFT One" productVer="2021" os="Windows 10" host="vm001"><DocLocation><![CDATA[C:\Users\sfjbs\Desktop\OpenCart_Home\Driver\Module1Home]]></DocLocation></General>
+<Doc rID="T1"   productName= "Micro Focus UFT One"  >
+<DName><![CDATA[Module1Home]]></DName>
+<Res><![CDATA[Res84]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xlsx]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[Tr_Home]]></Obj>
+<Details plainTxt="False" ><![CDATA[Transaction "Tr_Home" started.]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:10]]></Time>
+<TimeTick>1649304250</TimeTick>
+<NodeArgs eType="Transaction" icon="5" nRep="8" nType="Start Transaction" Source="Action1" SourceLine="0" >
+<Disp><![CDATA[Tr_Home]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:18]]></Time>
+<TimeTick>1649304258</TimeTick>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:18]]></Time>
+<TimeTick>1649304258</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="12" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="11" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:20]]></Time>
+<TimeTick>1649304260</TimeTick>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:20]]></Time>
+<TimeTick>1649304260</TimeTick>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Desktops.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:20]]></Time>
+<TimeTick>1649304260</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="16" >
+<Disp><![CDATA[Desktops.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Mac (1).Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:20]]></Time>
+<TimeTick>1649304260</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="18" >
+<Disp><![CDATA[Mac (1).Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Desktops.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:22]]></Time>
+<TimeTick>1649304262</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="19" >
+<Disp><![CDATA[Desktops.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="15" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="14" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj ><![CDATA[NavigationBar]]></Obj>
+<Details ><![CDATA[Navigation Successful]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:22]]></Time>
+<TimeTick>1649304262</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="20" status="Passed" >
+<Disp><![CDATA[NavigationBar]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:22]]></Time>
+<TimeTick>1649304262</TimeTick>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:22]]></Time>
+<TimeTick>1649304262</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="23" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:39]]></Time>
+<TimeTick>1649304279</TimeTick>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:39]]></Time>
+<TimeTick>1649304279</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="27" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="26" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:42]]></Time>
+<TimeTick>1649304282</TimeTick>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Your Store.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:42]]></Time>
+<TimeTick>1649304282</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="30" >
+<Disp><![CDATA[Your Store.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[Your Store.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:43]]></Time>
+<TimeTick>1649304283</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="31" >
+<Disp><![CDATA[Your Store.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="29" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="22" status="Passed" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj ><![CDATA[StoreLogo]]></Obj>
+<Details ><![CDATA[StoreLogo  Available]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:43]]></Time>
+<TimeTick>1649304283</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="32" status="Passed" >
+<Disp><![CDATA[StoreLogo]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:43]]></Time>
+<TimeTick>1649304283</TimeTick>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:43]]></Time>
+<TimeTick>1649304283</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="35" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:47]]></Time>
+<TimeTick>1649304287</TimeTick>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/7/2022 - 9:34:47]]></Time>
+<TimeTick>1649304287</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="39" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="38" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:10]]></Time>
+<TimeTick>1649304310</TimeTick>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA["$ Currency"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:10]]></Time>
+<TimeTick>1649304310</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="82" status="Warning" >
+<Disp><![CDATA["$ Currency"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA["$ Currency"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>type=submit<br>name=$ Currency<br>micclass=WebButton<br>html tag=BUTTON<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (19 objects found)&nbsp;</FONT></u><br>
+micclass=WebButton<br>html tag=BUTTON<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=$ Currency<SPAN class=Failed> (Skipped)</SPAN><br>type=submit<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>html id=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>value=$ Currency<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>class=btn btn-link dropdown-toggle<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>visible=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:10]]></Time>
+<TimeTick>1649304310</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="83" >
+<Disp><![CDATA["$ Currency"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[$ Currency.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:10]]></Time>
+<TimeTick>1649304310</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="84" >
+<Disp><![CDATA[$ Currency.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[£ Pound Sterling.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:10]]></Time>
+<TimeTick>1649304310</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="86" >
+<Disp><![CDATA[£ Pound Sterling.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA["$ Currency"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:14]]></Time>
+<TimeTick>1649304314</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="102" status="Warning" >
+<Disp><![CDATA["$ Currency"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA["$ Currency"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>type=submit<br>name=$ Currency<br>micclass=WebButton<br>html tag=BUTTON<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (19 objects found)&nbsp;</FONT></u><br>
+micclass=WebButton<br>html tag=BUTTON<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=$ Currency<SPAN class=Failed> (Skipped)</SPAN><br>type=submit<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>html id=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>value=$ Currency<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>class=btn btn-link dropdown-toggle<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>visible=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:14]]></Time>
+<TimeTick>1649304314</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="103" >
+<Disp><![CDATA["$ Currency"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[$ Currency.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:14]]></Time>
+<TimeTick>1649304314</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="104" >
+<Disp><![CDATA[$ Currency.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="81" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="34" status="Warning" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj ><![CDATA[CurrencyBlock]]></Obj>
+<Details ><![CDATA[CurrencyBlock Available]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:14]]></Time>
+<TimeTick>1649304314</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="105" status="Passed" >
+<Disp><![CDATA[CurrencyBlock]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:14]]></Time>
+<TimeTick>1649304314</TimeTick>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:14]]></Time>
+<TimeTick>1649304314</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="108" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:18]]></Time>
+<TimeTick>1649304318</TimeTick>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:18]]></Time>
+<TimeTick>1649304318</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="112" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="111" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:21]]></Time>
+<TimeTick>1649304321</TimeTick>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[Shopping Cart.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:21]]></Time>
+<TimeTick>1649304321</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="115" >
+<Disp><![CDATA[Shopping Cart.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="114" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:22]]></Time>
+<TimeTick>1649304322</TimeTick>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:22]]></Time>
+<TimeTick>1649304322</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="117" >
+<Disp><![CDATA[Phones & PDAs.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="116" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="107" status="Passed" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T43">
+<Obj ><![CDATA[ShoppingCart]]></Obj>
+<Details ><![CDATA[Navigation Successful]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:22]]></Time>
+<TimeTick>1649304322</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="118" status="Passed" >
+<Disp><![CDATA[ShoppingCart]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:22]]></Time>
+<TimeTick>1649304322</TimeTick>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:22]]></Time>
+<TimeTick>1649304322</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="121" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:31]]></Time>
+<TimeTick>1649304331</TimeTick>
+<Step rID="T47">
+<Obj plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "https://demo.opencart.com/",1]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:31]]></Time>
+<TimeTick>1649304331</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="125" status="Passed" >
+<Disp><![CDATA[Run "https://demo.opencart.com/",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="124" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:33]]></Time>
+<TimeTick>1649304333</TimeTick>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA[Laptops & Notebooks.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:33]]></Time>
+<TimeTick>1649304333</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="128" >
+<Disp><![CDATA[Laptops & Notebooks.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T50">
+<Obj plainTxt="False" ><![CDATA[Show All Laptops & Notebooks.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:33]]></Time>
+<TimeTick>1649304333</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="130" >
+<Disp><![CDATA[Show All Laptops & Notebooks.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="127" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:34]]></Time>
+<TimeTick>1649304334</TimeTick>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[Add to Cart.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:34]]></Time>
+<TimeTick>1649304334</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="133" >
+<Disp><![CDATA[Add to Cart.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA[Add to Cart_2.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:35:36]]></Time>
+<TimeTick>1649304336</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="139" >
+<Disp><![CDATA[Add to Cart_2.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA["2 item(s) - £546.13"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:00]]></Time>
+<TimeTick>1649304360</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="180" status="Warning" >
+<Disp><![CDATA["2 item(s) - £546.13"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA["2 item(s) - £546.13"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>type=button<br>name=2 item(s) - £546.13<br>micclass=WebButton<br>html tag=BUTTON<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (14 objects found)&nbsp;</FONT></u><br>
+micclass=WebButton<br>html tag=BUTTON<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=2 item(s) - £546.13<SPAN class=Failed> (Skipped)</SPAN><br>type=button<SPAN class=passed> (Used</SPAN>, 13 matches)</SPAN><br>html id=<SPAN class=passed> (Used</SPAN>, 11 matches)</SPAN><br>value=2 item(s) - £546.13<SPAN class=Failed> (Skipped)</SPAN><br>class=btn btn-inverse btn-block btn-lg dropdown-toggle<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>visible=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:00]]></Time>
+<TimeTick>1649304360</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="181" >
+<Disp><![CDATA["2 item(s) - £546.13"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T56">
+<Obj plainTxt="False" ><![CDATA[2 item(s) - £546.13.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:00]]></Time>
+<TimeTick>1649304360</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="182" >
+<Disp><![CDATA[2 item(s) - £546.13.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T57">
+<Obj plainTxt="False" ><![CDATA["2 item(s) - £546.13"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:03]]></Time>
+<TimeTick>1649304363</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="201" status="Warning" >
+<Disp><![CDATA["2 item(s) - £546.13"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T58">
+<Obj plainTxt="False" ><![CDATA["2 item(s) - £546.13"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>type=button<br>name=2 item(s) - £546.13<br>micclass=WebButton<br>html tag=BUTTON<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (14 objects found)&nbsp;</FONT></u><br>
+micclass=WebButton<br>html tag=BUTTON<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=2 item(s) - £546.13<SPAN class=Failed> (Skipped)</SPAN><br>type=button<SPAN class=passed> (Used</SPAN>, 13 matches)</SPAN><br>html id=<SPAN class=passed> (Used</SPAN>, 11 matches)</SPAN><br>value=2 item(s) - £546.13<SPAN class=Failed> (Skipped)</SPAN><br>class=btn btn-inverse btn-block btn-lg dropdown-toggle<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>visible=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:03]]></Time>
+<TimeTick>1649304363</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="202" >
+<Disp><![CDATA["2 item(s) - £546.13"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T59">
+<Obj plainTxt="False" ><![CDATA[2 item(s) - £546.13.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:03]]></Time>
+<TimeTick>1649304363</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="203" >
+<Disp><![CDATA[2 item(s) - £546.13.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="132" status="Warning" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T60">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:03]]></Time>
+<TimeTick>1649304363</TimeTick>
+<Step rID="T61">
+<Obj plainTxt="False" ><![CDATA[View Cart.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:03]]></Time>
+<TimeTick>1649304363</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="206" >
+<Disp><![CDATA[View Cart.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="205" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T62">
+<Obj plainTxt="False" ><![CDATA[Phones & PDAs]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:25]]></Time>
+<TimeTick>1649304385</TimeTick>
+<Step rID="T63">
+<Obj plainTxt="False" ><![CDATA["2 item(s) - £546.13"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:25]]></Time>
+<TimeTick>1649304385</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="250" status="Warning" >
+<Disp><![CDATA["2 item(s) - £546.13"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T64">
+<Obj plainTxt="False" ><![CDATA["2 item(s) - £546.13"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>type=button<br>name=2 item(s) - £546.13<br>micclass=WebButton<br>html tag=BUTTON<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (11 objects found)&nbsp;</FONT></u><br>
+micclass=WebButton<br>html tag=BUTTON<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=2 item(s) - £546.13<SPAN class=Failed> (Skipped)</SPAN><br>type=button<SPAN class=passed> (Used</SPAN>, 9 matches)</SPAN><br>html id=<SPAN class=passed> (Used</SPAN>, 8 matches)</SPAN><br>value=2 item(s) - £546.13<SPAN class=Failed> (Skipped)</SPAN><br>class=btn btn-inverse btn-block btn-lg dropdown-toggle<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>visible=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:25]]></Time>
+<TimeTick>1649304385</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="251" >
+<Disp><![CDATA["2 item(s) - £546.13"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T65">
+<Obj plainTxt="False" ><![CDATA[2 item(s) - £546.13.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:25]]></Time>
+<TimeTick>1649304385</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="252" >
+<Disp><![CDATA[2 item(s) - £546.13.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T66">
+<Obj plainTxt="False" ><![CDATA[Checkout.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:25]]></Time>
+<TimeTick>1649304385</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="254" >
+<Disp><![CDATA[Checkout.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="249" status="Warning" >
+<Disp><![CDATA[Phones & PDAs]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T67">
+<Obj plainTxt="False" ><![CDATA[Your Store.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:27]]></Time>
+<TimeTick>1649304387</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="256" >
+<Disp><![CDATA[Your Store.Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T68">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot&nbsp;identify&nbsp;the&nbsp;object&nbsp;"Your&nbsp;Store"&nbsp;(of&nbsp;class&nbsp;Browser).<br/>Verify&nbsp;that&nbsp;this&nbsp;object's&nbsp;properties&nbsp;match&nbsp;an&nbsp;object&nbsp;currently&nbsp;displayed&nbsp;in&nbsp;your&nbsp;application.]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:53]]></Time>
+<TimeTick>1649304413</TimeTick>
+<Step rID="T69">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object's physical description:<br>Mercury Class = Browser<br>CreationTime = 0<br>|Title = Your Store<br>openurl = https://demo.opencart.com<br>opentitle = Your Store<br>Opened By Testing Tool = 0<br>number of tabs = 1<br>Name = Your Store<br>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:53]]></Time>
+<TimeTick>1649304413</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="260" status="Warning" nType="Description" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="7" nRep="259" status="Failed" nType="Run Error" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="120" status="Failed" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T70">
+<Obj plainTxt="False" ><![CDATA[Your Store]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:53]]></Time>
+<TimeTick>1649304413</TimeTick>
+<Step rID="T71">
+<Obj plainTxt="False" ><![CDATA[Run Error]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot identify the object &quot;Your Store&quot; (of class Browser).<BR/>Verify that this object's properties match an object currently displayed in your application.<BR/>Function file: C:\Users\sfjbs\Desktop\OpenCart_Home\FunctionLibrary\HomeLibrary.qfl<BR/>Line (39): &quot;Browser(&quot;Your Store&quot;).Page(&quot;Your Store&quot;).WebEdit(&quot;search_2&quot;).Set ProductName&quot;.]]></Details>
+<Time><![CDATA[4/7/2022 - 9:36:53]]></Time>
+<TimeTick>1649304413</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="262" status="Failed" Source="C:\Users\sfjbs\Desktop\OpenCart_Home\FunctionLibrary\HomeLibrary.qfl" SourceLine="38" >
+<Disp><![CDATA[Run Error]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T72">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[4/7/2022 - 9:37:01]]></Time>
+<TimeTick>1649304421</TimeTick>
+<NodeArgs eType="General" icon="14" nRep="263" status="Information" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="261" status="Failed" Source="C:\Users\sfjbs\Desktop\OpenCart_Home\FunctionLibrary\HomeLibrary.qfl" SourceLine="-1" >
+<Disp><![CDATA[Your Store]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="4/7/2022 - 9:34:10" eTime="4/7/2022 - 9:37:01" passed="9" failed="2" warnings="6" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" status="Failed" >
+<Disp><![CDATA[Action1 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Failed" >
+<Disp><![CDATA[Module1Home Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="4/7/2022 - 9:34:04" eTime="4/7/2022 - 9:37:01" passed="9" failed="2" warnings="6" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[Test Module1Home Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

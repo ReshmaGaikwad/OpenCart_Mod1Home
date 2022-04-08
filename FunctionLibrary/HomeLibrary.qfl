@@ -1,0 +1,144 @@
+﻿Function OpenURL()
+'Environment
+systemutil.Run(Environment("Home_Env"))
+End Function 
+
+Function CloseBrowser()
+	Browser("Your Store").Close
+End Function
+
+Function CurrencyBlock()
+Browser("Your Store").Page("Your Store").WebButton("$ Currency").Click
+wait 5
+Browser("Your Store").Page("Your Store").WebButton("$ US Dollar").Click
+
+'Pass Fail Reports
+If Browser("Your Store").Page("Your Store").WebButton("$ Currency").Exist Then
+    Reporter.ReportEvent micPass,"CurrencyBlock","CurrencyBlock Available"
+else
+    Reporter.ReportEvent  micFail,"CurrencyBlock","CurrencyBlock Unavailable"
+End If
+End Function 
+
+Function MyAccount()
+'Static Descriptive Programming
+Browser("name:=Your Store").Page("title:=Your Store").Link("text:=My Account","abs_x:=1217").Click
+
+If Browser("name:=Your Store").Page("title:=Your Store").Link("text:=My Account","abs_x:=1217").Exist Then
+    Reporter.ReportEvent micPass,"MyAccount","MyAccount  Available"
+else
+    Reporter.ReportEvent  micFail,"MyAccount","MyAccount Unavailable"
+End If
+End Function 
+
+Function StoreLogo()
+'Dynamic Descriptive Programming
+Dim Browser1,Page1,Logo1
+Set Browser1=Description.Create
+Set Page1=Description.Create
+Set Logo1=Description.Create
+
+Browser1("name").value="Your Store"
+Page1("title").value="Your Store"
+Logo1("text").value="Your Store"
+
+Browser(Browser1).Page(Page1).Link(Logo1).Click
+
+If Browser(Browser1).Page(Page1).Link(Logo1).Exist Then
+    Reporter.ReportEvent micPass,"StoreLogo","StoreLogo  Available"
+else
+    Reporter.ReportEvent  micFail,"StoreLogo","StoreLogo  Unavailable"
+End If
+End Function 
+
+'Passing values from DataTable
+Function SearchBox(ProductName)
+wait 4
+Browser("Your Store").Page("Your Store").WebEdit("search_2").Set ProductName
+'GetROProperty
+'val=Browser("Your Store").Page("Your Store").WebEdit("search_2").GetROProperty("value")
+'msgbox val
+'
+Browser("Your Store").Page("Your Store").WebButton("WebButton").Click
+
+If Browser("Your Store").Page("Your Store").WebButton("WebButton").Exist Then
+    Reporter.ReportEvent micPass,"SearchBox","SearchBox  Available"
+else
+    Reporter.ReportEvent  micFail,"SearchBox","SearchBox  Unavailable"
+End If
+End Function 
+
+Function ShoppingCart()
+wait 3
+Browser("Your Store").Page("Your Store").Link("Shopping Cart").Click
+
+If Browser("Your Store").Page("Phones & PDAs").Exist Then
+    Reporter.ReportEvent micPass,"ShoppingCart","Navigation Successful"
+else
+    Reporter.ReportEvent  micFail,"ShoppingCart","Navigation unsuccessful"
+End If
+End Function 
+
+Function WishlistDisplay()
+'GetROProperty
+name=Browser("Your Store").Page("Your Store").Link("Wish List (0)").GetROProperty("name")
+msgbox name
+Browser("Your Store").Page("Your Store").Link("Wish List (0)").Click
+
+If Browser("Your Store").Page("Your Store").Exist Then
+    Reporter.ReportEvent micPass,"WishlistDisplay","WishlistDisplay Available"
+else
+    Reporter.ReportEvent  micFail,"WishlistDisplay","WishlistDisplay Unavailable"
+End If
+End Function 
+
+Function Checkout()
+Browser("Your Store").Page("Your Store").Link("Checkout_2").Click
+
+If Browser("Your Store").Page("Your Store").Link("Checkout_2").Exist Then
+    Reporter.ReportEvent micPass,"Checkout","Checkout  Available"
+else
+    Reporter.ReportEvent  micFail,"Checkout","Checkout Unavailable"
+End If
+End Function 
+
+
+Function CartButton()
+'CheckPoint
+Browser("Your Store").Page("Phones & PDAs").WebElement("WebElement").Check CheckPoint("WebElement")
+Browser("Your Store").Page("Phones & PDAs").WebButton("1 item(s) - $122.00").Click
+
+If Browser("Your Store").Page("Phones & PDAs").WebButton("1 item(s) - $122.00").Exist Then
+  Browser("Your Store").Page("Your Store").Link("View Cart").Click
+else
+    Browser("Your Store").Page("Phones & PDAs").Back
+End If
+End Function 
+
+Function NavigationBar()
+Browser("Your Store").Page("Your Store").Link("Desktops").Click
+Browser("Your Store").Page("Your Store").Link("Mac (1)").Click
+
+If Browser("Your Store").Page("Your Store").Link("Desktops").Exist Then
+    Reporter.ReportEvent micPass,"NavigationBar","Navigation Successful"
+else
+    Reporter.ReportEvent  micFail,"NavigationBar","Navigation Unsuccessful"
+End If
+End Function 
+
+Function AddToCart()
+Browser("Your Store").Page("Your Store").Link("Laptops & Notebooks").Click
+Browser("Your Store").Page("Your Store").Link("Show All Laptops & Notebooks").Click
+wait 2
+Browser("Your Store").Page("Phones & PDAs").WebButton("Add to Cart").Click
+'Synchronization
+Browser("Your Store").Page("Phones & PDAs").WebButton("Add to Cart_2").WaitProperty "abs_x", true, 5000
+Browser("Your Store").Page("Phones & PDAs").WebButton("Add to Cart_2").Click
+
+If Browser("Your Store").Page("Phones & PDAs").Exist Then
+    Reporter.ReportEvent micPass,"AddToCart","Navigation Successful"
+else
+    Reporter.ReportEvent  micFail,"AddToCart","Navigation unsuccessful"
+End If
+
+End Function
